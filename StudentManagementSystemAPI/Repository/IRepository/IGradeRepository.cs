@@ -4,10 +4,10 @@ namespace StudentManagementSystemAPI.Repository.IRepository
 {
     public interface IGradeRepository
     {
-        Task<User> GetAsync(int id);
-        Task CreateAsync(User user); 
-        Task UpdateAsync(User user);
-        Task RemoveAsync(User user);
+        Task<Grade> GetAsync(int id);
+        Task CreateAsync(Grade grade); 
+        Task UpdateAsync(Grade grade);
+        Task RemoveAsync(Grade grade);
         Task SaveAsync();
     }
 }

@@ -1,68 +1,43 @@
-﻿using StudentManagementSystemAPI.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using StudentManagementSystemAPI.Models;
 using StudentManagementSystemAPI.Repository.IRepository;
 
 namespace StudentManagementSystemAPI.Repository
 {
-    public class GradeRepository : IGradeRepository
+    public class UserRepository : IUserRepository
     {
-        private readonly List<Grade> _grades;
+        private readonly DbContext _context;
 
-        public GradeRepository()
+        public UserRepository(DbContext context)
         {
-            _grades = new List<Grade>();
+            _context = context;
         }
 
-        public Grade GetGradeById(int gradeId)
+        public async Task<User> GetAsync(int id)
         {
-            return _grades.FirstOrDefault(g => g.GradeId == gradeId);
+            return await _context.User.FindAsync(id);
         }
 
-        public IEnumerable<Grade> GetAllGrades()
+        public async Task CreateAsync(User user)
         {
-            return _grades;
+            await _context.User.AddAsync(user);
         }
 
-        public IEnumerable<Grade> GetGradesByLessonId(int lessonId)
+        public async Task UpdateAsync(User user)
         {
-            return _grades.Where(g => g.LessonId == lessonId);
+            await _context.User.Update(user);
         }
 
-        public IEnumerable<Grade> GetGradesByLecturerId(int lecturerId)
+        public async Task RemoveAsync(User user)
         {
-            return _grades.Where(g => g.LecturerId == lecturerId);
+            await _context.User.Remove(user);
         }
 
-        public IEnumerable<Grade> GetGradesByStudentId(int studentId)
+        public async Task SaveAsync()
         {
-            return _grades.Where(g => g.StudentId == studentId);
-        }
-
-        public void AddGrade(Grade grade)
-        {
-            _grades.Add(grade);
-        }
-
-        public void UpdateGrade(Grade grade)
-        {
-            var existingGrade = _grades.FirstOrDefault(g => g.GradeId == grade.GradeId);
-            if (existingGrade != null)
-            {
-                existingGrade.LessonId = grade.LessonId;
-                existingGrade.LecturerId = grade.LecturerId;
-                existingGrade.StudentId = grade.StudentId;
-                existingGrade.Score = grade.Score;
-                existingGrade.ScoreWeight = grade.ScoreWeight;
-            }
-        }
-
-        public void DeleteGrade(int gradeId)
-        {
-            var existingGrade = _grades.FirstOrDefault(g => g.GradeId == gradeId);
-            if (existingGrade != null)
-            {
-                _grades.Remove(existingGrade);
-            }
+            await _context.SaveChangesAsync();
         }
     }
+
 
 }

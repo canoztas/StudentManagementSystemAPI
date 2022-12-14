@@ -5,9 +5,9 @@ namespace StudentManagementSystemAPI.Repository.IRepository
     public interface ILessonRepository
     {
         Task<User> GetAsync(int id);
-        Task CreateAsync(User user); 
-        Task UpdateAsync(User user);
-        Task RemoveAsync(User user);
+        Task CreateAsync(Lesson lesson); 
+        Task UpdateAsync(Lesson lesson);
+        Task RemoveAsync(Lesson lesson);
         Task SaveAsync();
     }
 }

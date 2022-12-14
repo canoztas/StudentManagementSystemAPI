@@ -1,54 +1,42 @@
-﻿using StudentManagementSystemAPI.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using StudentManagementSystemAPI.Models;
 using StudentManagementSystemAPI.Repository.IRepository;
 
 namespace StudentManagementSystemAPI.Repository
 {
-    public class UserRepository : IUserRepository
+    public class GradeRepository : IGradeRepository
     {
-        private readonly List<User> _users;
+        private readonly DbContext _context;
 
-        public UserRepository()
+        public GradeRepository(DbContext context)
         {
-            _users = new List<User>();
+            _context = context;
         }
 
-        public User GetUserById(int userId)
+        public async Task<Grade> GetAsync(int id)
         {
-            return _users.FirstOrDefault(u => u.UserId == userId);
+            return await _context.Grades.FindAsync(id);
         }
 
-        public IEnumerable<User> GetAllUsers()
+        public async Task CreateAsync(Grade grade)
         {
-            return _users;
+            await _context.Grades.AddAsync(grade);
         }
 
-        public void AddUser(User user)
+        public async Task UpdateAsync(Grade grade)
         {
-            _users.Add(user);
+            await _context.Grades.UpdateAsync(grade);
         }
 
-        public void UpdateUser(User user)
+        public async Task RemoveAsync(Grade grade)
         {
-            var existingUser = _users.FirstOrDefault(u => u.UserId == user.UserId);
-            if (existingUser != null)
-            {
-                existingUser.FirstName = user.FirstName;
-                existingUser.LastName = user.LastName;
-                existingUser.Email = user.Email;
-                existingUser.PasswordHash = user.PasswordHash;
-                existingUser.DepartmentId = user.DepartmentId;
-                existingUser.PhotoPath = user.PhotoPath;
-                existingUser.UserType = user.UserType;
-                existingUser.LessonId = user.LessonId;
-            }
+            await _context.Grades.Remove(grade);
         }
 
-        public void DeleteUser(int userId)
+        public async Task SaveAsync()
         {
-            var existingUser = _users.FirstOrDefault(u => u.UserId == userId);
-            if (existingUser != null)
-            {
-                _users.Remove(existingUser);
-            }
+            await _context.SaveChangesAsync();
         }
     }
+
+}
