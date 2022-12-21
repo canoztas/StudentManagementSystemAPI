@@ -1,14 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StudentManagementSystemAPI.Data;
 using StudentManagementSystemAPI.Models;
 using StudentManagementSystemAPI.Repository.IRepository;
+using System;
+using System.Linq;
+using static Azure.Core.HttpHeader;
 
 namespace StudentManagementSystemAPI.Repository
 {
     public class GradeRepository : IGradeRepository
     {
-        private readonly DbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public GradeRepository(DbContext context)
+        public GradeRepository(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -17,6 +21,20 @@ namespace StudentManagementSystemAPI.Repository
         {
             return await _context.Grades.FindAsync(id);
         }
+        public List<Grade> GetByStudentId(int id)
+        {
+            List<Grade> query = _context.Grades.ToList();
+
+            return query.Where(g => g.StudentId == id).ToList();
+        }
+
+        public List<Grade> GetByLecturerId(int id)
+        {
+            List<Grade> query = _context.Grades.ToList();
+
+            return query.Where(g => g.LecturerId == id).ToList();
+        }
+
 
         public async Task CreateAsync(Grade grade)
         {
@@ -25,12 +43,12 @@ namespace StudentManagementSystemAPI.Repository
 
         public async Task UpdateAsync(Grade grade)
         {
-            await _context.Grades.UpdateAsync(grade);
+             _context.Grades.Update(grade);
         }
 
         public async Task RemoveAsync(Grade grade)
         {
-            await _context.Grades.Remove(grade);
+             _context.Grades.Remove(grade);
         }
 
         public async Task SaveAsync()

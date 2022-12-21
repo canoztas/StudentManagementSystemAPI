@@ -5,9 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using StudentManagementSystemAPI.Repository.IRepository;
 using StudentManagementSystemAPI.Models;
+using System.Diagnostics;
 
-namespace StudentManagementSystemAPI.Endpoints
+namespace StudentManagementSystemAPI.Controllers
 {
+    [Route("api/[controller]")]
     public class GradeController : Controller
     {
         private readonly IGradeRepository _gradeRepository;
@@ -18,11 +20,26 @@ namespace StudentManagementSystemAPI.Endpoints
         }
 
         [HttpGet]
-        public async Task<ActionResult<Grade>> Get(int id)
+        public async Task<ActionResult<Grade>> Get(int? gradeId, int? lecturerId, int? studentId)
         {
-            var grade = await _gradeRepository.GetAsync(id);
-            return Ok(grade);
+            if (gradeId != null)
+            {
+                var grade = await _gradeRepository.GetAsync(gradeId.Value);
+                return Ok(grade);
+            }
+            if (studentId != null)
+            {
+                var grade = _gradeRepository.GetByStudentId(studentId.Value);
+                return Ok(grade);
+            }
+            if (lecturerId != null)
+            {
+                var grade =  _gradeRepository.GetByLecturerId(lecturerId.Value);
+                return Ok(grade);
+            }
+            return BadRequest();
         }
+
 
         [HttpPost]
         public async Task<ActionResult> Create(Grade grade)

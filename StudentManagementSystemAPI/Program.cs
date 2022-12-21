@@ -1,7 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using StudentManagementSystemAPI.Data;
+using StudentManagementSystemAPI.Repository.IRepository;
+using StudentManagementSystemAPI.Repository;
+using System.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IGradeRepository, GradeRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
+
+
 
 var app = builder.Build();
 
@@ -21,5 +34,11 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.UseMvc(routes =>
+{
+    routes.MapRoute(name: "api", template: "api/{controller=User}");
+
+});
 
 app.Run();

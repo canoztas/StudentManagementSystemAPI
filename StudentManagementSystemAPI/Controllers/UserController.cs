@@ -2,8 +2,9 @@
 using StudentManagementSystemAPI.Models;
 using StudentManagementSystemAPI.Repository.IRepository;
 
-namespace StudentManagementSystemAPI.Endpoints
+namespace StudentManagementSystemAPI.Controllers
 {
+ [Route("api/[controller]")]
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;
