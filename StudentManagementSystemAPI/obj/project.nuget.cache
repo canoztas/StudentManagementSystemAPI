@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3VckUMtfE2eK2OPixDKOd2HH4ebFigCd4CNSzo4KLhfLTBcDn/6FCqKixyqxJeheeUGtVZDoYomBQA78TMxe2g==",
+  "dgSpecHash": "q1vmv6rIGCtNLnstF+l4Er8YySyASJfmOrql6EKzHcJDQVZ0U8Ll0QMRDdHsoyCCEd/Tuaf1Q8/i4R7NnJdpxA==",
   "success": true,
   "projectFilePath": "E:\\dotnet\\StudentManagementSystemAPI\\StudentManagementSystemAPI\\StudentManagementSystemAPI.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,8 @@
     "C:\\Users\\canoz\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\canoz\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\canoz\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\canoz\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
+    "C:\\Users\\canoz\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.4.0\\fluentvalidation.dependencyinjectionextensions.11.4.0.nupkg.sha512",
     "C:\\Users\\canoz\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\canoz\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\canoz\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

@@ -76,3 +76,5 @@ E:\dotnet\StudentManagementSystemAPI\StudentManagementSystemAPI\bin\Debug\net7.0
 E:\dotnet\StudentManagementSystemAPI\StudentManagementSystemAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
 E:\dotnet\StudentManagementSystemAPI\StudentManagementSystemAPI\bin\Debug\net7.0\Mono.TextTemplating.dll
 E:\dotnet\StudentManagementSystemAPI\StudentManagementSystemAPI\bin\Debug\net7.0\System.CodeDom.dll
+E:\dotnet\StudentManagementSystemAPI\StudentManagementSystemAPI\bin\Debug\net7.0\FluentValidation.dll
+E:\dotnet\StudentManagementSystemAPI\StudentManagementSystemAPI\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll

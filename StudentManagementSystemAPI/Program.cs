@@ -4,6 +4,7 @@ using StudentManagementSystemAPI.Data;
 using StudentManagementSystemAPI.Repository.IRepository;
 using StudentManagementSystemAPI.Repository;
 using System.Configuration;
+using StudentManagementSystemAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IGradeRepository, GradeRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddAutoMapper(typeof(MappingConfig));
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 
 
